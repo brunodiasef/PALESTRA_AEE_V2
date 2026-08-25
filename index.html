@@ -163,33 +163,18 @@ p{line-height:1.55}
 }
 
 /* ============================================================
-   CSS — COMO NAVEGAR
-   ============================================================ */
-.how-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin:1.2rem 0}
-.how-card{padding:1.2rem; text-align:left}
-.how-card .how-ico{font-size:1.7rem; display:inline-block; margin-bottom:.5rem; transition:transform .25s}
-@media (hover:hover){ .how-card:hover .how-ico{transform:translateY(-4px) rotate(-6deg)} }
-.how-card h3{font-size:1.02rem; margin-bottom:.35rem}
-.how-card p{font-size:.88rem; color:var(--ink-soft)}
-.demo-box{display:flex; align-items:center; gap:1rem; flex-wrap:wrap; padding:1rem 1.2rem}
-.demo-msg{font-weight:800; color:var(--sage-deep); animation:pop .4s both}
-
-/* ============================================================
    CSS — TRÍADE INTRODUÇÃO (acordeão)
    ============================================================ */
 .tri-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.1rem; margin-top:1.2rem}
 .acc-card{overflow:hidden}
 .acc-head{width:100%; background:none; border:none; cursor:pointer; padding:1.3rem 1.2rem; text-align:center; display:grid; justify-items:center; gap:.45rem}
-.acc-head .tri-ico{font-size:2rem; transition:transform .3s}
 .acc-head h3{font-size:1.15rem; letter-spacing:.1em}
 .acc-hint{font-size:.72rem; color:var(--gold-dark); font-weight:800; letter-spacing:.08em; text-transform:uppercase}
 .acc-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .5s ease}
 .acc-inner{overflow:hidden}
 .acc-inner p{padding:0 1.2rem 1.2rem; font-size:.9rem; color:var(--ink-soft); border-top:1px dashed var(--line); padding-top:.9rem; margin:0 .0rem}
 .acc-card.open .acc-body{grid-template-rows:1fr}
-.acc-card.open .acc-head .tri-ico{transform:scale(1.15) rotate(-6deg)}
 .acc-card.open{border-color:var(--sage)}
-@media (hover:hover){ .acc-head:hover .tri-ico{transform:translateY(-4px)} }
 
 /* ============================================================
    CSS — RADIAL OBJETIVO GERAL
@@ -197,14 +182,14 @@ p{line-height:1.55}
 .radial{position:relative; width:min(560px,94vw); height:min(540px,88vw); margin:1rem auto .5rem}
 .radial-core{
   position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
-  width:clamp(140px,30vw,180px); height:clamp(140px,30vw,180px); border-radius:50%;
-  background:radial-gradient(circle at 30% 25%, #E4C econ, transparent), linear-gradient(150deg,var(--brown),var(--brown-dark));
-  color:#F6EBD9; border:none; cursor:pointer; z-index:2;
-  font-family:var(--font-head); font-weight:700; font-size:clamp(.95rem,2vw,1.15rem); letter-spacing:.06em;
-  box-shadow:0 10px 26px rgba(70,54,42,.35), inset 0 2px 0 rgba(255,255,255,.15);
+  width:clamp(150px,32vw,190px); height:clamp(150px,32vw,190px); border-radius:50%;
+  background:linear-gradient(150deg,#FFFDF8,#F2E5CB);
+  color:var(--brown-dark); border:3px solid var(--gold-dark); cursor:pointer; z-index:2;
+  font-family:var(--font-head); font-weight:700; font-size:clamp(.95rem,2vw,1.15rem); letter-spacing:.05em;
+  box-shadow:0 10px 26px rgba(70,54,42,.28), inset 0 2px 0 rgba(255,255,255,.7);
   transition:transform .2s;
 }
-.radial-core small{display:block; font-family:var(--font-body); font-size:.62rem; letter-spacing:.14em; opacity:.8; margin-top:.3rem; text-transform:uppercase}
+.radial-core small{display:block; font-family:var(--font-body); font-size:.62rem; letter-spacing:.14em; color:var(--gold-dark); font-weight:800; margin-top:.35rem; text-transform:uppercase}
 @media (hover:hover){ .radial-core:hover{transform:translate(-50%,-50%) scale(1.04)} }
 .radial-core:active{transform:translate(-50%,-50%) scale(.97)}
 .sat-wrap{position:absolute; inset:0}
@@ -269,7 +254,7 @@ p{line-height:1.55}
 /* ============================================================
    CSS — ORGANIZAÇÃO (caminhos)
    ============================================================ */
-.paths{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.1rem; margin-top:1.3rem}
+.paths{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.1rem; margin-top:1.3rem; max-width:820px; margin-inline:auto}
 .path-card{overflow:hidden}
 .path-ico{font-size:2rem}
 .path-body .acc-inner{padding:0 1.2rem 1.2rem}
@@ -285,13 +270,23 @@ p{line-height:1.55}
 .persona small{color:var(--ink-soft); font-size:.75rem}
 .connector{width:clamp(40px,10vw,120px); height:6px; border-radius:6px; background:var(--sand); position:relative; overflow:visible}
 .connector::after{content:""; position:absolute; left:0; top:0; height:100%; width:0; border-radius:6px; background:linear-gradient(90deg,var(--sage),var(--gold))}
-.linked .connector::after{width:100%; transition:width .9s ease}
-.linked .p-ico{animation:pulse 1.2s ease .8s}
+.linked .connector::after{
+  width:100%; transition:width .9s ease;
+  background:linear-gradient(90deg,var(--sage),var(--gold),var(--sage));
+  background-size:200% 100%;
+  animation:flowline 2.2s linear infinite;
+}
+.linked .p-ico{animation:pulseSoft 2.2s ease-in-out infinite}
 @media (max-width:560px){
   .collab-stage{grid-template-columns:1fr; justify-items:center}
   .connector{width:6px; height:56px}
   .connector::after{width:100%; height:0}
-  .linked .connector::after{height:100%; transition:height .9s ease}
+  .linked .connector::after{
+    height:100%; transition:height .9s ease;
+    background:linear-gradient(180deg,var(--sage),var(--gold),var(--sage));
+    background-size:100% 200%;
+    animation:flowlineY 2.2s linear infinite;
+  }
 }
 .collab-content{max-width:720px; margin:1.2rem auto 0; padding:1.3rem 1.4rem; display:grid; gap:.9rem}
 .collab-actions{display:flex; gap:.7rem; flex-wrap:wrap}
@@ -302,12 +297,13 @@ p{line-height:1.55}
 .mode-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1.1rem; margin:1.2rem 0}
 .mode-card.sage .acc-head h3{color:var(--sage-deep)}
 .mode-card.blue .acc-head h3{color:var(--blue-dark)}
+.mode-card.wood .acc-head h3{color:var(--wood)}
 .mode-tag{display:inline-block; padding:.25rem .7rem; border-radius:999px; font-size:.68rem; font-weight:800; letter-spacing:.1em}
 .mode-card.sage .mode-tag{background:var(--sage-light); color:var(--sage-deep)}
 .mode-card.blue .mode-tag{background:var(--blue-light); color:var(--blue-dark)}
-.eja-reveal{max-width:760px; padding:1.4rem; display:grid; gap:.8rem}
-.eja-reveal .eja-points{display:grid; gap:.6rem}
-.eja-points li{list-style:none; display:flex; gap:.6rem; align-items:flex-start; font-size:.92rem; color:var(--ink-soft)}
+.mode-card.wood .mode-tag{background:var(--beige); color:var(--brown)}
+.eja-points{display:grid; gap:.6rem; margin-top:.7rem}
+.eja-points li{list-style:none; display:flex; gap:.6rem; align-items:flex-start; font-size:.88rem; color:var(--ink-soft)}
 .eja-points li::before{content:"✔"; color:var(--sage-deep); font-weight:800}
 
 /* ============================================================
@@ -504,10 +500,12 @@ p{line-height:1.55}
 @keyframes pop{from{opacity:0; transform:scale(.94)} to{opacity:1; transform:scale(1)}}
 @keyframes fade{from{opacity:0} to{opacity:1}}
 @keyframes floaty{0%,100%{transform:translateY(0)} 50%{transform:translateY(-9px)}}
-@keyframes pulse{0%{transform:scale(1)} 40%{transform:scale(1.18) rotate(-4deg)} 100%{transform:scale(1)}}
+@keyframes pulseSoft{0%,100%{transform:scale(1)} 50%{transform:scale(1.14) rotate(-4deg)}}
 @keyframes nudge{0%,100%{transform:translateX(0)} 50%{transform:translateX(5px)}}
 @keyframes blink{0%,100%{background:var(--sand)} 50%{background:var(--gold-dark)}}
 @keyframes wave{0%,100%{height:12px} 50%{height:40px}}
+@keyframes flowline{from{background-position:0 0} to{background-position:200% 0}}
+@keyframes flowlineY{from{background-position:0 0} to{background-position:0 200%}}
 
 /* ============================================================
    CSS — ACESSIBILIDADE / RESPONSIVIDADE
@@ -528,7 +526,7 @@ p{line-height:1.55}
 <!-- ===================== TOPO ===================== -->
 <header class="topbar">
   <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span class="brand-text">FORMAÇÃO&nbsp;AEE</span></div>
-  <div class="counter" aria-live="polite" aria-label="Progresso da apresentação"><span id="slideNow">01</span> / <span id="slideTotal">20</span></div>
+  <div class="counter" aria-live="polite" aria-label="Progresso da apresentação"><span id="slideNow">01</span> / <span id="slideTotal">18</span></div>
   <div class="top-actions">
     <button id="btnFontDown" class="icon-btn" aria-label="Diminuir tamanho do texto" title="Diminuir texto">A−</button>
     <button id="btnFontUp" class="icon-btn" aria-label="Aumentar tamanho do texto" title="Aumentar texto">A+</button>
@@ -562,7 +560,6 @@ p{line-height:1.55}
       <h1 class="focus-first" data-a style="--d:.12s">Atendimento Educacional Especializado</h1>
       <p class="subtitle" data-a style="--d:.2s">Organização, planejamento, adaptação e acompanhamento</p>
       <button id="btnStart" class="btn btn3d btn-gold btn-big" data-a style="--d:.3s"><span class="btn-label">INICIAR FORMAÇÃO</span><span class="btn-ico" aria-hidden="true">→</span></button>
-      <p class="hint" data-a style="--d:.42s">Use os botões Anterior / Próximo, as setas do teclado (← →) ou o menu.</p>
     </div>
     <figure class="cover-art" data-a style="--d:.25s">
       <img src="https://image.qwenlm.ai/public_source/a3de3b37-0e9c-43c6-9cd5-783bc5c5d8d9/12961a3a5-9a26-4b66-bc42-af124bb00a2f.png" alt="Ilustração de uma sala de aula inclusiva: crianças diversas aprendem juntas em uma mesa redonda, com professora acolhendo um estudante com bengala e outro em cadeira de rodas.">
@@ -573,57 +570,39 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 02 · COMO NAVEGAR -->
-<section class="slide" data-title="Como navegar">
-  <div class="wrap">
-    <p class="kicker" data-a>Boas-vindas</p>
-    <h2 class="focus-first" data-a style="--d:.08s">Como navegar nesta formação</h2>
-    <p class="lead" data-a style="--d:.16s">Esta não é uma sequência de slides estáticos: o conteúdo se revela conforme você explora. Toque, clique e descubra.</p>
-    <div class="how-grid">
-      <div class="how-card card lift" data-a style="--d:.2s"><span class="how-ico" aria-hidden="true">👆</span><h3>Clique para descobrir</h3><p>Cards, botões e painéis revelam o conteúdo somente após a sua interação.</p></div>
-      <div class="how-card card lift" data-a style="--d:.28s"><span class="how-ico" aria-hidden="true">⌨️</span><h3>Teclado</h3><p>Setas ← e → trocam de tela. A tecla Home volta ao início.</p></div>
-      <div class="how-card card lift" data-a style="--d:.36s"><span class="how-ico" aria-hidden="true">🧭</span><h3>Menu e progresso</h3><p>Abra o menu lateral, acompanhe a barra de progresso e o contador de telas.</p></div>
-      <div class="how-card card lift" data-a style="--d:.44s"><span class="how-ico" aria-hidden="true">🔎</span><h3>Texto ajustável</h3><p>Use os botões A− e A+ no topo para aumentar ou diminuir a letra.</p></div>
-    </div>
-    <div class="demo-box card" data-a style="--d:.5s">
-      <button id="demoBtn" class="btn btn3d btn-sage"><span class="btn-label">EXPERIMENTE: CLIQUE AQUI</span></button>
-      <p id="demoMsg" class="demo-msg" hidden>Perfeito! É assim que o conteúdo se revela. ✔</p>
-    </div>
-  </div>
-</section>
-
-<!-- 03 · INTRODUÇÃO -->
+<!-- 02 · INTRODUÇÃO -->
 <section class="slide" data-title="Introdução">
   <div class="wrap">
     <p class="kicker" data-a>O AEE</p>
     <h2 class="focus-first" data-a style="--d:.08s">Introdução ao AEE</h2>
-    <p class="lead" data-a style="--d:.16s">O Atendimento Educacional Especializado identifica, elabora e organiza recursos pedagógicos e de acessibilidade que eliminam barreiras, servindo de apoio à participação e à aprendizagem dos estudantes na escola comum.</p>
+    <p class="lead" data-a style="--d:.16s">O Atendimento Educacional Especializado constitui um pilar fundamental para a efetivação da educação inclusiva, garantindo:</p>
     <p class="hint" data-a style="--d:.24s">Toque em cada pilar para descobrir.</p>
     <div class="tri-grid">
       <div class="acc-card tri-card card lift" data-a style="--d:.28s">
-        <button class="acc-head" aria-expanded="false"><span class="tri-ico" aria-hidden="true">🚪</span><h3>ACESSO</h3><span class="acc-hint">clique para descobrir</span></button>
+        <button class="acc-head" aria-expanded="false"><h3>ACESSO</h3><span class="acc-hint">clique para descobrir</span></button>
         <div class="acc-body"><div class="acc-inner"><p>O AEE atua para que o estudante entre, permaneça e circule na escola comum, removendo barreiras físicas, comunicacionais e pedagógicas que impedem a sua presença.</p></div></div>
       </div>
       <div class="acc-card tri-card card lift" data-a style="--d:.36s">
-        <button class="acc-head" aria-expanded="false"><span class="tri-ico" aria-hidden="true">🤝</span><h3>PARTICIPAÇÃO</h3><span class="acc-hint">clique para descobrir</span></button>
+        <button class="acc-head" aria-expanded="false"><h3>PARTICIPAÇÃO</h3><span class="acc-hint">clique para descobrir</span></button>
         <div class="acc-body"><div class="acc-inner"><p>Mais do que estar na sala, o estudante precisa participar: o AEE organiza estratégias e recursos para que ele realize as atividades junto com os demais colegas.</p></div></div>
       </div>
       <div class="acc-card tri-card card lift" data-a style="--d:.44s">
-        <button class="acc-head" aria-expanded="false"><span class="tri-ico" aria-hidden="true">🌱</span><h3>APRENDIZAGEM</h3><span class="acc-hint">clique para descobrir</span></button>
+        <button class="acc-head" aria-expanded="false"><h3>APRENDIZAGEM</h3><span class="acc-hint">clique para descobrir</span></button>
         <div class="acc-body"><div class="acc-inner"><p>O AEE acompanha o percurso de aprendizagem do estudante, propondo adaptações e intervenções especializadas para que ele avance e se desenvolva.</p></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 04 · OBJETIVO GERAL -->
+<!-- 03 · OBJETIVO GERAL -->
 <section class="slide" data-title="Objetivo geral">
   <div class="wrap">
     <p class="kicker" data-a>Propósito</p>
     <h2 class="focus-first" data-a style="--d:.08s">Objetivo geral</h2>
-    <p class="lead" data-a style="--d:.16s">O objetivo geral é <strong>organizar o AEE</strong> na escola: toque no centro e, em seguida, em cada eixo para conhecer o que essa organização envolve.</p>
+    <p class="lead" data-a style="--d:.16s">O objetivo geral é, sistematizar a organização operacional e pedagógica do Atendimento Educacional Especializado (AEE), descrevendo</p>
+    <p class="hint" data-a style="--d:.22s">Toque no centro e, em seguida, em cada eixo.</p>
     <div class="radial" id="radial">
-      <button class="radial-core" id="radialCore" aria-expanded="false">ORGANIZAR<br>O AEE<small>toque para abrir</small></button>
+      <button class="radial-core" id="radialCore" aria-expanded="false">ORGANIZAÇÃO<br>DO AEE<small>toque para abrir</small></button>
       <div class="sat-wrap">
         <button class="sat" data-sat="mod"  style="--a:-90deg; --r:min(205px,33vw); --dd:.05s"><span class="sat-ico" aria-hidden="true">🧩</span>MODALIDADES DE ATENDIMENTO</button>
         <button class="sat" data-sat="plan" style="--a:-18deg; --r:min(205px,33vw); --dd:.12s"><span class="sat-ico" aria-hidden="true">🗓️</span>PLANEJAMENTO COLABORATIVO</button>
@@ -636,7 +615,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 05 · LINHA DO TEMPO -->
+<!-- 04 · LINHA DO TEMPO -->
 <section class="slide" data-title="Linha do tempo">
   <div class="wrap">
     <p class="kicker" data-a>Percurso</p>
@@ -654,30 +633,26 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 06 · ORGANIZAÇÃO DO AEE -->
+<!-- 05 · ORGANIZAÇÃO DO AEE -->
 <section class="slide" data-title="Organização do AEE">
   <div class="wrap">
     <p class="kicker" data-a>Caminhos</p>
     <h2 class="focus-first" data-a style="--d:.08s">Organização do AEE</h2>
-    <p class="lead" data-a style="--d:.16s">Três grandes caminhos estruturam o atendimento. Toque em cada um para ver o resumo e, se quiser, abrir a tela completa.</p>
+    <p class="lead" data-a style="--d:.16s">Dois grandes caminhos estruturam o atendimento. Toque em cada um para ver o resumo e, se quiser, abrir a tela completa.</p>
     <div class="paths">
       <div class="acc-card path-card card lift" data-a style="--d:.22s">
         <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true">🤝</span><h3>TRABALHO COLABORATIVO</h3><span class="acc-hint">toque para abrir</span></button>
-        <div class="acc-body path-body"><div class="acc-inner"><p>Professor regente e professor do AEE atuam em parceria direta na sala de aula regular.</p><button class="btn btn3d btn-sage" data-go="6"><span class="btn-label">Abrir tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body path-body"><div class="acc-inner"><p>Professor regente e professor do AEE atuam em parceria direta na sala de aula regular.</p><button class="btn btn3d btn-sage" data-go="5"><span class="btn-label">Abrir tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
       <div class="acc-card path-card card lift" data-a style="--d:.3s">
         <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true"></span><h3>SALA DE RECURSOS</h3><span class="acc-hint">toque para abrir</span></button>
-        <div class="acc-body path-body"><div class="acc-inner"><p>O atendimento especializado acontece na sala de recursos multifuncionais, no turno contrário ao das aulas.</p><button class="btn btn3d btn-blue" data-go="7"><span class="btn-label">Abrir tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
-      </div>
-      <div class="acc-card path-card card lift" data-a style="--d:.38s">
-        <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true">🎓</span><h3>EJA</h3><span class="acc-hint">toque para abrir</span></button>
-        <div class="acc-body path-body"><div class="acc-inner"><p>O AEE também acompanha os estudantes público da educação especial matriculados na Educação de Jovens e Adultos.</p><button class="btn btn3d btn-wood" data-go="8"><span class="btn-label">Abrir tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body path-body"><div class="acc-inner"><p>O atendimento especializado acontece na sala de recursos multifuncionais, organizado em tempo integral, turno parcial e também no atendimento na EJA.</p><button class="btn btn3d btn-blue" data-go="6"><span class="btn-label">Abrir tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 07 · TRABALHO COLABORATIVO -->
+<!-- 06 · TRABALHO COLABORATIVO -->
 <section class="slide" data-title="Trabalho colaborativo">
   <div class="wrap">
     <p class="kicker" data-a>Parceria</p>
@@ -700,7 +675,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 08 · SALA DE RECURSOS -->
+<!-- 07 · SALA DE RECURSOS (inclui EJA) -->
 <section class="slide" data-title="Sala de recursos">
   <div class="wrap">
     <p class="kicker" data-a>Espaço especializado</p>
@@ -715,36 +690,26 @@ p{line-height:1.55}
         <button class="acc-head" aria-expanded="false"><span class="mode-tag">FORMATO 2</span><h3>🌓 TURNO PARCIAL</h3><span class="acc-hint">toque para ver</span></button>
         <div class="acc-body"><div class="acc-inner"><p>Para estudantes de turno parcial, o AEE é ofertado no turno contrário ao das aulas, garantindo que o estudante receba o atendimento sem perder as atividades da sala comum.</p></div></div>
       </div>
+      <div class="acc-card mode-card wood card lift" data-a style="--d:.4s">
+        <button class="acc-head" aria-expanded="false"><span class="mode-tag">EJA</span><h3>🎓 ATENDIMENTO NA EJA</h3><span class="acc-hint">toque para ver</span></button>
+        <div class="acc-body"><div class="acc-inner">
+          <p>Os estudantes público da educação especial matriculados na Educação de Jovens e Adultos (EJA) também recebem o Atendimento Educacional Especializado, com organização e adaptações adequadas a essa modalidade de ensino.</p>
+          <ul class="eja-points">
+            <li>Atendimento respeitando as trajetórias de vida e de aprendizagem dos estudantes.</li>
+            <li>Materiais e adaptações sem infantilização, coerentes com o público jovem e adulto.</li>
+            <li>Acompanhamento articulado com os professores da EJA.</li>
+          </ul>
+        </div></div>
+      </div>
     </div>
-    <div style="text-align:center" data-a style="--d:.4s">
+    <div style="text-align:center" data-a style="--d:.46s">
       <button id="btnRoomImages" class="btn btn3d btn-ghost" aria-expanded="false"><span class="btn-label">VER IMAGENS</span><span class="btn-ico" aria-hidden="true">🖼️</span></button>
     </div>
     <div class="carousel reveal" id="carouselRoom" aria-label="Carrossel de imagens da sala de recursos"></div>
   </div>
 </section>
 
-<!-- 09 · EJA -->
-<section class="slide" data-title="EJA">
-  <div class="wrap">
-    <p class="kicker" data-a>Educação de Jovens e Adultos</p>
-    <h2 class="focus-first" data-a style="--d:.08s">Atendimento na EJA</h2>
-    <div class="explore-hero" data-a style="--d:.16s">
-      <span class="big-emoji" aria-hidden="true">🎓</span>
-      <p class="lead">O AEE também chega à Educação de Jovens e Adultos.</p>
-      <button class="btn btn3d btn-wood" data-explore="ejaReveal" data-alt-label="OCULTAR CONTEÚDO" data-def-label="CONHECER O ATENDIMENTO NA EJA" aria-expanded="false"><span class="btn-label">CONHECER O ATENDIMENTO NA EJA</span><span class="btn-ico" aria-hidden="true">↓</span></button>
-    </div>
-    <div class="eja-reveal card reveal" id="ejaReveal">
-      <p>Os estudantes público da educação especial matriculados na EJA também recebem o Atendimento Educacional Especializado, com organização e adaptações adequadas a essa modalidade de ensino.</p>
-      <ul class="eja-points">
-        <li>Atendimento respeitando as trajetórias de vida e de aprendizagem dos estudantes.</li>
-        <li>Materiais e adaptações sem infantilização, coerentes com o público jovem e adulto.</li>
-        <li>Acompanhamento articulado com os professores da EJA.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- 10 · PLANEJAMENTO -->
+<!-- 08 · PLANEJAMENTO -->
 <section class="slide" data-title="Planejamento">
   <div class="wrap">
     <p class="kicker" data-a>Rotina organizada</p>
@@ -777,7 +742,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 11 · ATIVIDADES ADAPTADAS -->
+<!-- 09 · ATIVIDADES ADAPTADAS -->
 <section class="slide" data-title="Atividades adaptadas">
   <div class="wrap">
     <p class="kicker" data-a>Da proposta à intervenção</p>
@@ -813,7 +778,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 12 · MONITORAMENTO -->
+<!-- 10 · MONITORAMENTO -->
 <section class="slide" data-title="Monitoramento">
   <div class="wrap">
     <p class="kicker" data-a>Acompanhamento contínuo</p>
@@ -830,7 +795,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 13 · TABELA INFORMATIVA -->
+<!-- 11 · TABELA INFORMATIVA -->
 <section class="slide" data-title="Tabela informativa">
   <div class="wrap">
     <p class="kicker" data-a>Instrumento de registro</p>
@@ -855,7 +820,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 14 · ESPECIALIDADES -->
+<!-- 12 · ESPECIALIDADES -->
 <section class="slide" data-title="Especialidades do AEE">
   <div class="wrap">
     <p class="kicker" data-a>Frentes de atuação</p>
@@ -864,25 +829,25 @@ p{line-height:1.55}
     <div class="spec-grid">
       <div class="acc-card card lift" data-a style="--d:.22s">
         <button class="acc-head" aria-expanded="false"><span class="spec-emoji" aria-hidden="true">🧠</span><h3>DEFICIÊNCIA INTELECTUAL</h3><span class="acc-hint">toque para conhecer</span></button>
-        <div class="acc-body"><div class="acc-inner spec-inner"><p>Apoio ao desenvolvimento cognitivo, à autonomia e à aprendizagem, com adaptações e recursos adequados ao percurso do estudante.</p><button class="btn btn3d btn-sage" data-go="14"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body"><div class="acc-inner spec-inner"><p>Apoio ao desenvolvimento cognitivo, à autonomia e à aprendizagem, com adaptações e recursos adequados ao percurso do estudante.</p><button class="btn btn3d btn-sage" data-go="12"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
       <div class="acc-card card lift" data-a style="--d:.3s">
         <button class="acc-head" aria-expanded="false"><span class="spec-emoji" aria-hidden="true">👁️</span><h3>DEFICIÊNCIA VISUAL</h3><span class="acc-hint">toque para conhecer</span></button>
-        <div class="acc-body"><div class="acc-inner spec-inner"><p>Recursos e estratégias para estudantes cegos e com baixa visão: Braille, materiais táteis e recursos visuais ampliados.</p><button class="btn btn3d btn-gold" data-go="15"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body"><div class="acc-inner spec-inner"><p>Recursos e estratégias para estudantes cegos e com baixa visão: Braille, materiais táteis e recursos visuais ampliados.</p><button class="btn btn3d btn-gold" data-go="13"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
       <div class="acc-card card lift" data-a style="--d:.38s">
         <button class="acc-head" aria-expanded="false"><span class="spec-emoji" aria-hidden="true">👂</span><h3>DEFICIÊNCIA AUDITIVA</h3><span class="acc-hint">toque para conhecer</span></button>
-        <div class="acc-body"><div class="acc-inner spec-inner"><p>Atendimento que considera as possibilidades de comunicação do estudante, com apoio de recursos visuais.</p><button class="btn btn3d btn-blue" data-go="16"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body"><div class="acc-inner spec-inner"><p>Atendimento que considera as possibilidades de comunicação do estudante, com apoio de recursos visuais.</p><button class="btn btn3d btn-blue" data-go="14"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
       <div class="acc-card card lift" data-a style="--d:.46s">
         <button class="acc-head" aria-expanded="false"><span class="spec-emoji" aria-hidden="true">🤟</span><h3>LIBRAS</h3><span class="acc-hint">toque para conhecer</span></button>
-        <div class="acc-body"><div class="acc-inner spec-inner"><p>Atendimento especializado em Língua Brasileira de Sinais para o estudante surdo.</p><button class="btn btn3d btn-wood" data-go="17"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
+        <div class="acc-body"><div class="acc-inner spec-inner"><p>Atendimento especializado em Língua Brasileira de Sinais para o estudante surdo.</p><button class="btn btn3d btn-wood" data-go="15"><span class="btn-label">Ver tela completa</span><span class="btn-ico" aria-hidden="true">→</span></button></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 15 · DEFICIÊNCIA INTELECTUAL -->
+<!-- 13 · DEFICIÊNCIA INTELECTUAL -->
 <section class="slide" data-title="Deficiência intelectual">
   <div class="wrap">
     <p class="kicker" data-a>Especialidade 1</p>
@@ -904,7 +869,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 16 · DEFICIÊNCIA VISUAL -->
+<!-- 14 · DEFICIÊNCIA VISUAL -->
 <section class="slide" data-title="Deficiência visual">
   <div class="wrap">
     <p class="kicker" data-a>Especialidade 2</p>
@@ -936,7 +901,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 17 · DEFICIÊNCIA AUDITIVA -->
+<!-- 15 · DEFICIÊNCIA AUDITIVA -->
 <section class="slide" data-title="Deficiência auditiva">
   <div class="wrap">
     <p class="kicker" data-a>Especialidade 3</p>
@@ -961,7 +926,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 18 · LIBRAS -->
+<!-- 16 · LIBRAS -->
 <section class="slide" data-title="Libras">
   <div class="wrap">
     <p class="kicker" data-a>Especialidade 4</p>
@@ -986,7 +951,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 19 · GALERIA -->
+<!-- 17 · GALERIA -->
 <section class="slide" data-title="Galeria">
   <div class="wrap">
     <p class="kicker" data-a>Para ver de perto</p>
@@ -999,7 +964,7 @@ p{line-height:1.55}
   </div>
 </section>
 
-<!-- 20 · ENCERRAMENTO -->
+<!-- 18 · ENCERRAMENTO -->
 <section class="slide" data-title="Encerramento">
   <div class="wrap">
     <p class="kicker" data-a>Síntese</p>
@@ -1160,12 +1125,9 @@ $$('[data-explore]').forEach(function(b){
   });
 });
 
-/* ---------- DEMO ---------- */
-$('#demoBtn').addEventListener('click',function(){ $('#demoMsg').hidden=false; });
-
 /* ---------- RADIAL OBJETIVO ---------- */
 var SAT_DATA={
-  mod:{t:'Modalidades de atendimento',d:'O AEE é ofertado em diferentes modalidades conforme a necessidade do estudante: na sala de recursos multifuncionais, de forma colaborativa na sala comum e também na EJA.'},
+  mod:{t:'Modalidades de atendimento',d:'O AEE é ofertado em diferentes modalidades conforme a necessidade do estudante: na sala de recursos multifuncionais e de forma colaborativa na sala comum.'},
   plan:{t:'Planejamento colaborativo',d:'O professor do AEE planeja junto com o professor regente e participa dos momentos de planejamento coletivo da escola.'},
   adap:{t:'Adaptação curricular',d:'Elaboração de atividades adaptadas e de recursos que possibilitam a participação do estudante nas propostas da turma.'},
   moni:{t:'Monitoramento',d:'Acompanhamento contínuo dos estudantes, das adaptações propostas e do trabalho realizado pelo profissional do AEE.'},
@@ -1190,7 +1152,7 @@ $$('.sat').forEach(function(s){
 
 /* ---------- LINHA DO TEMPO ---------- */
 var TL_DATA=[
-  {i:'🧭',t:'ORGANIZAÇÃO',d:'Define como o AEE acontece na escola: sala de recursos multifuncionais no turno contrário, trabalho colaborativo e atendimento também na EJA.'},
+  {i:'🧭',t:'ORGANIZAÇÃO',d:'Define como o AEE acontece na escola: sala de recursos multifuncionais no turno e contraturno e trabalho colaborativo.'},
   {i:'🗓️',t:'PLANEJAMENTO',d:'Professor do AEE e professor regente planejam juntos, por área de conhecimento, com organização semanal do atendimento.'},
   {i:'🧩',t:'ADAPTAÇÃO',d:'As atividades da turma são adaptadas para garantir a participação e a aprendizagem do estudante do AEE.'},
   {i:'🤝',t:'ATENDIMENTO',d:'Acontece de forma colaborativa na sala comum e com intervenção especializada na sala de recursos.'},
@@ -1207,7 +1169,7 @@ function tlSelect(i){
 }
 tlSteps.forEach(function(s){ s.addEventListener('click',function(){tlSelect(+s.dataset.step)}); });
 
-/* ---------- TRABALHO COLABORATIVO ---------- */
+/* ---------- TRABALHO COLABORATIVO (efeito em loop) ---------- */
 var collabDone=false;
 $('#btnConnect').addEventListener('click',function(){
   var st=$('#collabStage');
@@ -1397,54 +1359,28 @@ goTo(0,true);
 </script>
 
 <!-- ============================================================
-RELATÓRIO DO GAUNTLET LOOP (teste rigoroso)
-
-FUNCIONALIDADES MAPEADAS
-- 20 telas (capa, como navegar, introdução, objetivo, linha do tempo,
-  organização, colaborativo, sala de recursos, EJA, planejamento,
-  atividades adaptadas, monitoramento, tabela, especialidades, DI, DV,
-  DA, Libras, galeria, encerramento); navegação anterior/próximo;
-  teclado ←/→/Home/End; botão Home; menu drawer + scrim + fechar;
-  minimapa de dots; barra de progresso + contador; controle A−/A+;
-  acordeões (tríade, caminhos, modos, especialidades); radial com 5
-  eixos; linha do tempo com preenchimento de trilho; conexão animada
-  do trabalho colaborativo; calendário com revelação progressiva;
-  cards de atividades com fluxo sincronizado; abas de monitoramento;
-  tabela com animação e versão mobile em cards; botões EXPLORAR com
-  reveal; carrosséis (sala de recursos e galeria) com miniaturas,
-  contador, setas e swipe; modais (colab, tabela) com ESC/backdrop;
-  palavras clicáveis do encerramento; data-go; prefers-reduced-motion.
-
-PROBLEMAS ENCONTRADOS / CAUSA / CORREÇÃO
-1. Foco do teclado "preso" em slide oculto ao navegar → correção:
-   goTo() move o foco para o título da slide ativa (tabindex -1).
-2. Clique rápido no carrossel podia causar corrida de fade → correção:
-   token de sequência (my!==token) ignora timeouts obsoletos.
-3. Reanimação de painéis (tl/radial/end) não reiniciava → correção:
-   remoção da classe + leitura de offsetWidth (reflow) antes de
-   re-adicionar a classe de animação.
-4. Trilho da linha do tempo em mobile precisava de orientação
-   vertical → correção: CSS redefine trilho/preenchimento para eixo Y.
-5. Tabela com rolagem horizontal no celular → correção: media query
-   transforma linhas em cards empilhados com data-label.
-6. Botão CONECTAR clicável repetidamente re-disparava timeout →
-   correção: desabilita após o primeiro clique + guarda collabDone.
-7. Radial com satélites clicáveis antes de abrir → correção:
-   pointer-events:none até .open.
-8. Setas do teclado com modal aberto trocavam a tela → correção:
-   keydown retorna cedo quando modalOpen (apenas ESC atua).
-
-TESTE DE REGRESSÃO
-- Navegação completa ida e volta (0→19→0); abertura/fechamento
-  repetido de drawer e modais; acordeões abertos em sequência;
-  carrossel com cliques rápidos e swipe; tabela abrir/fechar;
-  A−/A+ nos limites (disabled); dots e drawer sincronizados com a
-  tela atual; sem overflow horizontal em 390/430/768/1024/1366/1920.
-
-RESULTADO FINAL
-GAUNTLET LOOP CONCLUÍDO
-- Problemas encontrados: 8 · Corrigidos: 8 · Restantes: 0
-- Funcionalidades validadas: todas as mapeadas acima.
+NOTAS DA ATUALIZAÇÃO (rodada de revisão)
+1. Slide "Como navegar" removido; total de telas agora é 18 (menu,
+   dots e contador são gerados automaticamente a partir das seções).
+2. Removidas de todos os slides as instruções sobre teclado/mouse
+   (incluindo a dica da capa).
+3. Introdução: ícones da tríade removidos; frase principal trocada
+   por "constitui um pilar fundamental para a efetivação da educação
+   inclusiva, garantindo:".
+4. Objetivo geral: frase do lead trocada; botão central renomeado
+   para "ORGANIZAÇÃO DO AEE" e refeito com fundo claro + texto escuro
+   (contraste corrigido; também removido o valor de gradiente inválido
+   que derrubava o fundo do botão).
+5. "Modalidades de atendimento": trecho "e também na EJA" removido.
+6. Linha do tempo: descrição de ORGANIZAÇÃO substituída por "Define
+   como o AEE acontece na escola: sala de recursos multifuncionais no
+   turno e contraturno e trabalho colaborativo."
+7. Tela "Organização do AEE": card EJA removido; a EJA passa a
+   aparecer dentro de SALA DE RECURSOS (resumo no card e acordeão
+   "ATENDIMENTO NA EJA" na tela da sala de recursos).
+8. Trabalho colaborativo: efeito de conexão agora fica em loop
+   (gradiente fluindo no conector + pulso contínuo nos ícones, com
+   variante vertical no celular).
 ============================================================ -->
 </body>
 </html>
