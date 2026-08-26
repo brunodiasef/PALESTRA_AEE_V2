@@ -13,6 +13,63 @@
 
 <style>
 /* ============================================================
+   CSS — LINHAS CURVAS DE FUNDO (ANIMADAS)
+   ============================================================ */
+.bg-curves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1; /* Fica atrás de todo o conteúdo */
+  pointer-events: none; /* Não bloqueia os cliques nos botões */
+  overflow: hidden;
+}
+
+.bg-curves svg {
+  width: 100%;
+  height: 100%;
+}
+
+.curve {
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Curva 1: Dourada suave */
+.curve-1 {
+  stroke: rgba(194, 162, 99, 0.15); /* Cor dourada bem transparente */
+  stroke-width: 3px;
+  animation: floatCurve 25s ease-in-out infinite alternate;
+}
+
+/* Curva 2: Verde Sálvia suave */
+.curve-2 {
+  stroke: rgba(126, 154, 124, 0.15); /* Cor verde bem transparente */
+  stroke-width: 5px;
+  animation: floatCurve 30s ease-in-out infinite alternate-reverse;
+}
+
+/* Curva 3: Bege/Marrom claro suave */
+.curve-3 {
+  stroke: rgba(124, 87, 59, 0.08); /* Cor marrom bem sutil */
+  stroke-width: 2px;
+  animation: floatCurve 20s ease-in-out infinite alternate;
+}
+
+/* Animação que faz as linhas "respirarem" e se moverem devagar */
+@keyframes floatCurve {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-2%, 3%) scale(1.05) rotate(1deg);
+  }
+  100% {
+    transform: translate(2%, -2%) scale(1.02) rotate(-1deg);
+  }
+}
+/* ============================================================
    CSS — VARIÁVEIS E PALETA
    ============================================================ */
 :root{
@@ -137,7 +194,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
 .kicker{display:inline-flex; align-items:center; gap:.55rem; font-family:var(--font-util); font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--brown-dark)}
 .kicker::before{content:""; display:inline-block; width:22px; height:2px; background:var(--gold-dark); flex:0 0 auto}
-.lead{color:var(--ink-soft); max-width:72ch; font-size:clamp(.95rem,1.6vw,1.06rem)}
+.lead{color:var(--ink-soft); max-width:72ch; font-size:clamp(.95rem,1.6vw,1.06rem); word-break: keep-all;}
 .hint{
   display:inline-flex; align-items:center; gap:.45rem; font-family:var(--font-util);
   font-size:.72rem; letter-spacing:.05em; color:var(--brown-dark); font-style:normal;
@@ -390,6 +447,14 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 </head>
 
 <body>
+<!-- Fundo com linhas curvas elegantes -->
+<div class="bg-curves" aria-hidden="true">
+  <svg viewBox="0 0 1440 800" preserveAspectRatio="none">
+    <path class="curve curve-1" d="M-100,200 C300,400 600,-100 1500,300" />
+    <path class="curve curve-2" d="M-100,600 C400,300 800,800 1500,400" />
+    <path class="curve curve-3" d="M200,-100 C600,300 1000,100 1300,900" />
+  </svg>
+</div>
 <a class="skip" href="#stage">Pular para o conteúdo</a>
 
 <header class="topbar">
@@ -454,7 +519,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   <div class="wrap">
     <p class="kicker" data-a>O AEE</p>
     <h2 class="focus-first" data-a style="--d:.08s">Introdução ao AEE</h2>
-    <p class="lead" data-a style="--d:.16s">O Atendimento Educacional Especializado constitui um pilar fundamental para a efetivação da educação inclusiva, garantindo:</p>
+    <p class="lead" data-a style="--d:.16s">O Atendimento Educacional Especializado constitui um pilar fundamental<br>para a efetivação da educação inclusiva, garantindo:</p>
     <div class="tri-grid">
       <div class="acc-card tri-card card lift" data-a style="--d:.28s">
         <button class="acc-head" aria-expanded="false"><h3>ACESSO</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
@@ -477,9 +542,8 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   <div class="wrap">
     <p class="kicker" data-a>Propósito</p>
     <h2 class="focus-first" data-a style="--d:.08s">Objetivo geral</h2>
-    <p class="lead" data-a style="--d:.16s">O objetivo geral é, sistematizar a organização operacional e pedagógica do Atendimento Educacional Especializado (AEE), descrevendo</p>
-    <p class="hint" data-a style="--d:.22s">Toque no centro e, em seguida, em cada eixo.</p>
-    <div class="radial" id="radial">
+    <p class="lead" data-a style="--d:.16s">O objetivo geral é, sistematizar a organização operacional e pedagógica do<br>Atendimento Educacional Especializado (AEE), descrevendo</p>
+        <div class="radial" id="radial">
       <button class="radial-core" id="radialCore" aria-expanded="false">ORGANIZAÇÃO<br>DO AEE</button>
       <div class="sat-wrap">
         <button class="sat" data-sat="mod"  style="--a:-90deg; --r:min(205px,33vw); --dd:.05s"><span class="sat-ico" aria-hidden="true">🧩</span>MODALIDADES DE ATENDIMENTO</button>
@@ -503,7 +567,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
       <!-- CARD 1: TRABALHO COLABORATIVO -->
       <div class="acc-card path-card card lift" data-a style="--d:.22s">
-        <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true">🤝</span><h3>TRABALHO COLABORATIVO</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
+        <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true"></span><h3>TRABALHO COLABORATIVO</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
         <div class="acc-body path-body">
           <div class="acc-inner">
             <div class="collab-people">
@@ -515,31 +579,31 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
               <div class="collab-person">
                 <span class="emoji" aria-hidden="true">🧑‍</span>
                 <h4>Professor de AEE</h4>
-                <small>traz recursos e estratégias especializadas</small>
+                <small>traz recursos e<br>estratégias especializadas</small>
               </div>
             </div>
-            <p>Professor regente e professor do AEE atuam em parceria direta na sala de aula regular e juntos, observam o estudante, definem adaptações e acompanham a participação e a aprendizagem.</p>
+            <p>Desenvolvido na sala de aula regular em parceria direta com o professor regente.<br><br>Professor regente e professor do AEE atuam em parceria direta na sala de aula regular e juntos, observam o estudante, definem adaptações e acompanham a participação e a aprendizagem.</p>
           </div>
         </div>
       </div>
 
       <!-- CARD 2: SALA DE RECURSOS -->
       <div class="acc-card path-card card lift" data-a style="--d:.3s">
-        <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true">🏫</span><h3>SALA DE RECURSOS</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
+        <button class="acc-head" aria-expanded="false"><span class="path-ico" aria-hidden="true"></span><h3>SALA DE RECURSOS</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
         <div class="acc-body path-body">
           <div class="acc-inner">
-            <p>A sala de recursos é o espaço do atendimento especializado.</p>
+            <p>A sala de recursos é o espaço do<br>atendimento especializado.</p>
             <div class="mini-cards-grid">
               <div class="mini-card">
-                <button class="mini-head" aria-expanded="false"><h4>⏰ Tempo Integral</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
-                <div class="mini-body"><div><p>Realizado durante o horário escolar, preferencialmente nas aulas de Estudo Orientado.</p></div></div>
+                <button class="mini-head" aria-expanded="false"><h4>Tempo Integral</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
+                <div class="mini-body"><div><p>Realizado durante o horário escolar,<br>preferencialmente nas aulas de Estudo Orientado.</p></div></div>
               </div>
               <div class="mini-card">
-                <button class="mini-head" aria-expanded="false"><h4>🌓 Turno Parcial</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
-                <div class="mini-body"><div><p>Para estudantes de turno parcial, o AEE é ofertado no contra turno, garantindo que o estudante receba o atendimento sem perder as atividades da sala comum.</p></div></div>
+                <button class="mini-head" aria-expanded="false"><h4>Turno Parcial</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
+                <div class="mini-body"><div><p>Para estudantes de turno parcial, o AEE é<br>ofertado no contra turno, garantindo que o<br>estudante receba o atendimento sem perder as<br>atividades da sala comum.</p></div></div>
               </div>
               <div class="mini-card">
-                <button class="mini-head" aria-expanded="false"><h4>🎓 Atendimento na EJA</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
+                <button class="mini-head" aria-expanded="false"><h4>Atendimento na EJA</h4><span class="mini-arrow" aria-hidden="true">▾</span></button>
                 <div class="mini-body"><div><p>A modalidade adotada é exclusivamente colaborativa.</p></div></div>
               </div>
             </div>
@@ -578,7 +642,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   <div class="wrap">
     <p class="kicker" data-a>Da proposta à intervenção</p>
     <h2 class="focus-first" data-a style="--d:.08s">Atividades adaptadas</h2>
-    <p class="lead" data-a style="--d:.16s">Toque em cada card para ver como a mesma proposta se transforma em três momentos.</p>
+    <p class="lead" data-a style="--d:.16s">A aprovação pedagógica de avaliações e trabalhos trimestrais exige a apresentação de duas versões: a REGULAR e a ADAPTADA.</p>
     <div class="act-cards" data-a style="--d:.24s">
       <div class="act-card card">
         <button class="act-head" aria-expanded="false"><span class="act-num">1</span><h3>ATIVIDADE DO ALUNO REGULAR</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
