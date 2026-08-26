@@ -399,6 +399,9 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   <span class="head-teacher" id="headTeacher" hidden>Profª Simoni Dalcim</span>
   <span class="credit"><span class="credit-label">Criado por&nbsp;</span>Bruno Dias de Oliveira</span>
   <div class="counter" aria-live="polite" aria-label="Progresso da apresentação"><span id="slideNow">01</span> / <span id="slideTotal">09</span></div>
+<button id="btnFullscreen" class="icon-btn" aria-label="Modo tela cheia" title="Tela Cheia">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+</button>
   <div class="top-actions">
     <button id="btnFontDown" class="icon-btn" aria-label="Diminuir tamanho do texto" title="Diminuir texto">A−</button>
     <button id="btnFontUp" class="icon-btn" aria-label="Aumentar tamanho do texto" title="Aumentar texto">A+</button>
@@ -814,6 +817,52 @@ function applyScale(){
 $('#btnFontDown').addEventListener('click',function(){scale=Math.max(MIN,+(scale-STEP).toFixed(2)); applyScale();});
 $('#btnFontUp').addEventListener('click',function(){scale=Math.min(MAX,+(scale+STEP).toFixed(2)); applyScale();});
 applyScale();
+/* MODIFICAÇÃO: Botão de Tela Cheia */
+$('#btnFullscreen').addEventListener('click', function() {
+  if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+    // Entrar em tela cheia
+    if (document.documentElement.requestFullscreen) {
+      document.documentElement.requestFullscreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+      document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+      document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+      document.documentElement.msRequestFullscreen();
+    }
+    // Muda o ícone para "Sair da tela cheia"
+    this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
+    this.title = "Sair da Tela Cheia";
+  } else {
+    // Sair da tela cheia
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { /* Safari */
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+      document.msExitFullscreen();
+    }
+    // Volta o ícone para "Entrar em tela cheia"
+    this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+    this.title = "Tela Cheia";
+  }
+});
+
+// Atualiza o ícone caso o usuário saia da tela cheia apertando ESC
+document.addEventListener('fullscreenchange', updateFullscreenIcon);
+document.addEventListener('webkitfullscreenchange', updateFullscreenIcon);
+document.addEventListener('mozfullscreenchange', updateFullscreenIcon);
+document.addEventListener('MSFullscreenChange', updateFullscreenIcon);
+
+function updateFullscreenIcon() {
+  var btn = $('#btnFullscreen');
+  if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+    btn.title = "Tela Cheia";
+  }
+}
 
 $$('.acc-head').forEach(function(h){
   h.addEventListener('click',function(){
