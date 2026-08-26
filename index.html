@@ -154,7 +154,6 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
 .cover{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(1rem,4vw,3rem); align-items:center; min-height:100%}
 .cover h1{font-size:clamp(2rem,5vw,3.6rem); margin:.5rem 0 .7rem}
-/* MODIFICAÇÃO SLIDE 1: Destaque para o nome da escola no topo */
 .cover-school{display:inline-block; font-family:var(--font-head); font-weight:700; letter-spacing:.04em; font-size:1.3rem; color:var(--brown-dark); background:var(--cream2); border:2px solid var(--gold-dark); border-radius:16px; padding:.8rem 1.5rem; margin-bottom:1.5rem; text-transform:uppercase; box-shadow:var(--shadow-1)}
 .cover-teacher{font-weight:700; color:var(--sage-deep); font-size:1.02rem; margin-bottom:1.4rem}
 .cover-art{position:relative}
@@ -183,8 +182,9 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   box-shadow:0 4px 0 var(--sage-deep), var(--shadow-1);
 }
 
-.acc-card .acc-arrow{position:absolute; bottom:.8rem; right:1rem; opacity:.5; transition:opacity .3s, transform .3s; font-size:.9rem; color:var(--brown-dark)}
-.acc-card.open .acc-arrow{opacity:0; transform:translateY(4px)}
+/* MODIFICAÇÃO: seta discreta vale para acc-cards E act-cards (slide 6) */
+.acc-card .acc-arrow,.act-card .acc-arrow{position:absolute; bottom:.8rem; right:1rem; opacity:.5; transition:opacity .3s, transform .3s; font-size:.9rem; color:var(--brown-dark)}
+.acc-card.open .acc-arrow,.act-card.open .acc-arrow{opacity:0; transform:translateY(4px)}
 
 .radial{position:relative; width:min(560px,94vw); height:min(540px,88vw); margin:1rem auto .5rem}
 .radial-core{
@@ -265,7 +265,8 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 .act-card{flex:1; overflow:hidden; transition:flex .5s ease, opacity .4s, transform .4s}
 .act-card.dim{opacity:.72; transform:scale(.97)}
 .act-card.open{flex:2.8}
-.act-head{width:100%; border:none; background:none; cursor:pointer; padding:1.2rem; display:grid; justify-items:center; gap:.5rem; text-align:center}
+/* MODIFICAÇÃO: act-head com position:relative para ancorar a seta */
+.act-head{width:100%; border:none; background:none; cursor:pointer; padding:1.2rem; display:grid; justify-items:center; gap:.5rem; text-align:center; position:relative}
 .act-num{width:34px; height:34px; border-radius:50%; background:var(--gold-soft); color:var(--gold-dark); font-family:var(--font-head); font-weight:700; font-size:1.05rem; display:grid; place-items:center}
 .act-head h3{font-size:.95rem; letter-spacing:.05em; min-height:2.4em; display:grid; align-content:center}
 .act-body{display:grid; grid-template-rows:0fr; transition:grid-template-rows .55s ease}
@@ -416,7 +417,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
 <main id="stage">
 
-<!-- 01 · CAPA (MODIFICADO: Nome da escola no topo centralizado, frase removida) -->
+<!-- 01 · CAPA -->
 <section class="slide" data-title="Início">
   <div class="wrap">
     <div style="text-align:center; margin-bottom:1.5rem;" data-a style="--d:.05s">
@@ -484,12 +485,12 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   </div>
 </section>
 
-<!-- 04 · ORGANIZAÇÃO DO AEE -->
+<!-- 04 · ORGANIZAÇÃO DO AEE (MODIFICADO: frase encurtada) -->
 <section class="slide" data-title="Organização do AEE">
   <div class="wrap">
     <p class="kicker" data-a>Caminhos</p>
     <h2 class="focus-first" data-a style="--d:.08s">Organização do AEE</h2>
-    <p class="lead" data-a style="--d:.16s">Dois grandes caminhos estruturam o atendimento. Toque em cada um para ver o resumo.</p>
+    <p class="lead" data-a style="--d:.16s">Dois grandes caminhos estruturam o atendimento.</p>
     <div class="paths">
 
       <!-- CARD 1: TRABALHO COLABORATIVO -->
@@ -504,7 +505,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
                 <small>conduz a turma e as propostas da sala comum</small>
               </div>
               <div class="collab-person">
-                <span class="emoji" aria-hidden="true">🧑‍🏫</span>
+                <span class="emoji" aria-hidden="true">🧑‍</span>
                 <h4>Professor de AEE</h4>
                 <small>traz recursos e estratégias especializadas</small>
               </div>
@@ -564,7 +565,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   </div>
 </section>
 
-<!-- 06 · ATIVIDADES ADAPTADAS -->
+<!-- 06 · ATIVIDADES ADAPTADAS (MODIFICADO: "toque para abrir" trocado por setas) -->
 <section class="slide" data-title="Atividades adaptadas">
   <div class="wrap">
     <p class="kicker" data-a>Da proposta à intervenção</p>
@@ -572,21 +573,21 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
     <p class="lead" data-a style="--d:.16s">Toque em cada card para ver como a mesma proposta se transforma em três momentos.</p>
     <div class="act-cards" data-a style="--d:.24s">
       <div class="act-card card">
-        <button class="act-head" aria-expanded="false"><span class="act-num">1</span><h3>ATIVIDADE DO ALUNO REGULAR</h3><span class="acc-hint">toque para abrir</span></button>
+        <button class="act-head" aria-expanded="false"><span class="act-num">1</span><h3>ATIVIDADE DO ALUNO REGULAR</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
         <div class="act-body"><div class="act-inner"><div class="act-pad">
           <img loading="lazy" src="aluno-regular.png" alt="Atividade proposta à turma da sala de aula comum">
           <p>A atividade como proposta à turma da sala de aula comum: mesmo tema, mesmo objetivo, para todos os estudantes.</p>
         </div></div></div>
       </div>
       <div class="act-card card">
-        <button class="act-head" aria-expanded="false"><span class="act-num">2</span><h3>ATIVIDADE AEE ADAPTADA NA SALA DE AULA</h3><span class="acc-hint">toque para abrir</span></button>
+        <button class="act-head" aria-expanded="false"><span class="act-num">2</span><h3>ATIVIDADE AEE ADAPTADA NA SALA DE AULA</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
         <div class="act-body"><div class="act-inner"><div class="act-pad">
           <img loading="lazy" src="adaptada-na-sala.png" alt="Atividade adaptada para participação na sala de aula">
           <p>A mesma proposta da turma, com as adaptações necessárias para que o estudante do AEE participe junto dos colegas, na sala de aula.</p>
         </div></div></div>
       </div>
       <div class="act-card card">
-        <button class="act-head" aria-expanded="false"><span class="act-num">3</span><h3>ATIVIDADE ADAPTADA NA SALA DE RECURSOS</h3><span class="acc-hint">toque para abrir</span></button>
+        <button class="act-head" aria-expanded="false"><span class="act-num">3</span><h3>ATIVIDADE ADAPTADA NA SALA DE RECURSOS</h3><span class="acc-arrow" aria-hidden="true">▾</span></button>
         <div class="act-body"><div class="act-inner"><div class="act-pad">
           <img loading="lazy" src="sala-de-recursos.png" alt="Atividade com intervenção especializada na sala de recursos">
           <p>Na sala de recursos, a atividade recebe intervenção especializada do professor do AEE, com materiais e estratégias específicas para o desenvolvimento do estudante.</p>
@@ -628,7 +629,7 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   </div>
 </section>
 
-<!-- 08 · ESPECIALIDADES (MODIFICADO: "Três" frentes) -->
+<!-- 08 · ESPECIALIDADES -->
 <section class="slide" data-title="Especialidades do AEE">
   <div class="wrap">
     <p class="kicker" data-a>Frentes de atuação</p>
