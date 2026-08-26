@@ -32,7 +32,6 @@
   --font-util:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
 *{box-sizing:border-box; margin:0; padding:0}
-/* MODIFICAÇÃO: fonte base do projeto aumentada (16px → 18px) */
 html{font-size:18px}
 html,body{height:100%}
 body{
@@ -48,7 +47,6 @@ button{font-family:inherit; color:inherit}
 h1,h2,h3{font-family:var(--font-head); color:var(--brown-dark); line-height:1.15; letter-spacing:-.012em}
 p{line-height:1.55}
 
-/* MODIFICAÇÃO: títulos e frases nunca escapam dos botões e cards */
 h1,h2,h3,h4,h5,h6,p,button,span,small,td,th,a{overflow-wrap:break-word; word-break:break-word; hyphens:auto}
 .btn{white-space:normal; text-align:center}
 
@@ -69,7 +67,6 @@ h1,h2,h3,h4,h5,h6,p,button,span,small,td,th,a{overflow-wrap:break-word; word-bre
 }
 .brand{display:flex; align-items:center; gap:.5rem; font-family:var(--font-util); font-weight:700; letter-spacing:.14em; font-size:.72rem; color:var(--brown-dark)}
 .brand-mark{width:30px;height:30px;border-radius:50%;background:linear-gradient(180deg,var(--gold),var(--gold-dark)); color:#fff; display:grid; place-items:center; font-size:.95rem; box-shadow:0 2px 6px rgba(132,106,51,.4)}
-/* MODIFICAÇÃO: crédito no cabeçalho */
 .credit{font-family:var(--font-util); font-weight:700; font-size:.64rem; letter-spacing:.08em; color:var(--ink-soft); background:var(--cream2); border:1px solid var(--line); padding:.28rem .7rem; border-radius:999px; text-transform:uppercase}
 @media (max-width:720px){ .credit .credit-label{display:none} }
 @media (max-width:520px){ .credit{display:none} }
@@ -157,9 +154,8 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
 .cover{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(1rem,4vw,3rem); align-items:center; min-height:100%}
 .cover h1{font-size:clamp(2rem,5vw,3.6rem); margin:.5rem 0 .7rem}
-.subtitle{font-size:clamp(1rem,2vw,1.25rem); font-weight:700; color:var(--sage-deep); margin-bottom:1rem}
-/* MODIFICAÇÃO SLIDE 1: escola e professora palestrante */
-.cover-school{display:inline-block; font-family:var(--font-util); font-weight:700; letter-spacing:.08em; font-size:.82rem; color:var(--brown-dark); background:var(--cream2); border:1px dashed var(--sand); border-radius:999px; padding:.45rem 1rem; margin-bottom:.5rem; text-transform:uppercase}
+/* MODIFICAÇÃO SLIDE 1: Destaque para o nome da escola no topo */
+.cover-school{display:inline-block; font-family:var(--font-head); font-weight:700; letter-spacing:.04em; font-size:1.3rem; color:var(--brown-dark); background:var(--cream2); border:2px solid var(--gold-dark); border-radius:16px; padding:.8rem 1.5rem; margin-bottom:1.5rem; text-transform:uppercase; box-shadow:var(--shadow-1)}
 .cover-teacher{font-weight:700; color:var(--sage-deep); font-size:1.02rem; margin-bottom:1.4rem}
 .cover-art{position:relative}
 .cover-art img{border-radius:26px; border:6px solid #fff; box-shadow:var(--shadow-2); aspect-ratio:1/1; object-fit:cover; animation:floaty 7s ease-in-out infinite}
@@ -393,7 +389,6 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 <body>
 <a class="skip" href="#stage">Pular para o conteúdo</a>
 
-<!-- MODIFICAÇÃO: cabeçalho com crédito -->
 <header class="topbar">
   <div class="brand"><span class="brand-mark" aria-hidden="true">✳</span><span class="brand-text">FORMAÇÃO&nbsp;AEE</span></div>
   <span class="credit"><span class="credit-label">Criado por&nbsp;</span>Bruno Dias de Oliveira</span>
@@ -421,23 +416,26 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
 
 <main id="stage">
 
-<!-- 01 · CAPA (MODIFICADO: escola e professora palestrante) -->
+<!-- 01 · CAPA (MODIFICADO: Nome da escola no topo centralizado, frase removida) -->
 <section class="slide" data-title="Início">
-  <div class="wrap cover">
-    <div class="cover-text">
-      <p class="kicker" data-a style="--d:.05s">Educação inclusiva</p>
-      <h1 class="focus-first" data-a style="--d:.12s">Atendimento Educacional Especializado</h1>
-      <p class="subtitle" data-a style="--d:.2s">Organização, planejamento, adaptação e acompanhamento</p>
-      <p class="cover-school" data-a style="--d:.24s">E.E.E.F.M. ILDA FERREIRA DA FONSECA MARTINS</p>
-      <p class="cover-teacher" data-a style="--d:.28s">Palestrante: Prof.ª de AEE SIMONI DALCIM</p>
-      <button id="btnStart" class="btn btn3d btn-gold btn-big" data-a style="--d:.34s"><span class="btn-label">INICIAR FORMAÇÃO</span><span class="btn-ico" aria-hidden="true">→</span></button>
+  <div class="wrap">
+    <div style="text-align:center; margin-bottom:1.5rem;" data-a style="--d:.05s">
+      <p class="cover-school">E.E.E.F.M. ILDA FERREIRA DA FONSECA MARTINS</p>
     </div>
-    <figure class="cover-art" data-a style="--d:.25s">
-      <img src="https://image.qwenlm.ai/public_source/a3de3b37-0e9c-43c6-9cd5-783bc5c5d8d9/12961a3a5-9a26-4b66-bc42-af124bb00a2f.png" alt="Ilustração de uma sala de aula inclusiva: crianças diversas aprendem juntas em uma mesa redonda, com professora acolhendo um estudante com bengala e outro em cadeira de rodas.">
-      <span class="float-chip c1" aria-hidden="true">♿</span>
-      <span class="float-chip c2" aria-hidden="true">🤝</span>
-      <span class="float-chip c3" aria-hidden="true">📚</span>
-    </figure>
+    <div class="cover">
+      <div class="cover-text">
+        <p class="kicker" data-a style="--d:.1s">Educação inclusiva</p>
+        <h1 class="focus-first" data-a style="--d:.15s">Atendimento Educacional Especializado</h1>
+        <p class="cover-teacher" data-a style="--d:.2s">Palestrante: Prof.ª de AEE SIMONI DALCIM</p>
+        <button id="btnStart" class="btn btn3d btn-gold btn-big" data-a style="--d:.25s"><span class="btn-label">INICIAR FORMAÇÃO</span><span class="btn-ico" aria-hidden="true">→</span></button>
+      </div>
+      <figure class="cover-art" data-a style="--d:.15s">
+        <img src="https://image.qwenlm.ai/public_source/a3de3b37-0e9c-43c6-9cd5-783bc5c5d8d9/12961a3a5-9a26-4b66-bc42-af124bb00a2f.png" alt="Ilustração de uma sala de aula inclusiva: crianças diversas aprendem juntas em uma mesa redonda, com professora acolhendo um estudante com bengala e outro em cadeira de rodas.">
+        <span class="float-chip c1" aria-hidden="true">♿</span>
+        <span class="float-chip c2" aria-hidden="true">🤝</span>
+        <span class="float-chip c3" aria-hidden="true">📚</span>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -630,12 +628,12 @@ body.branch .branch-bar .branch-back{animation:pop .4s both}
   </div>
 </section>
 
-<!-- 08 · ESPECIALIDADES -->
+<!-- 08 · ESPECIALIDADES (MODIFICADO: "Três" frentes) -->
 <section class="slide" data-title="Especialidades do AEE">
   <div class="wrap">
     <p class="kicker" data-a>Frentes de atuação</p>
     <h2 class="focus-first" data-a style="--d:.08s">Especialidades do AEE</h2>
-    <p class="lead" data-a style="--d:.16s">Quatro frentes de atendimento especializado. Toque em cada card para conhecer.</p>
+    <p class="lead" data-a style="--d:.16s">Três frentes de atendimento especializado. Toque em cada card para conhecer.</p>
     <div class="spec-grid">
       <div class="pub-card card lift" data-a style="--d:.22s">
         <button class="pub-head" aria-expanded="false"><h3>PESSOAS COM DEFICIÊNCIA</h3><span class="pub-arrow" aria-hidden="true">▾</span></button>
@@ -797,7 +795,6 @@ menuBtn.addEventListener('click',function(){ drawerOpen?closeDrawer():openDrawer
 $('#btnDrawerClose').addEventListener('click',closeDrawer);
 scrim.addEventListener('click',closeDrawer);
 
-/* MODIFICAÇÃO: base de escala acompanhando a nova fonte base (18px) */
 var scale=1, MIN=.85, MAX=1.4, STEP=.1;
 function applyScale(){
   document.documentElement.style.fontSize=(18*scale).toFixed(1)+'px';
